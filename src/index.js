@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
-const routes1 = require("./src/routes/route")
+const routes1 = require("./routes/route")
 const passport = require('passport');
-const { jwtStrategy } = require('./src/passport');
-const router = require('./src/routes/token.route');
+const { jwtStrategy } = require('./passport');
+const router = require('./routes/token.route');
 
 
 app.use(express.json());
@@ -14,7 +14,4 @@ app.use('/token', router);
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy)
 
-
-app.listen(2000, () => {
-    console.log(`app listen on 2000 port!!!`)
-})
+module.exports = app;
