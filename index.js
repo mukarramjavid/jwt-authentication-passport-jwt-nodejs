@@ -4,7 +4,6 @@ const routes1 = require("./src/routes/route")
 const passport = require('passport');
 const { jwtStrategy } = require('./src/passport');
 const router = require('./src/routes/token.route');
-const bodyParser = require('body-parser')
 
 
 app.use(express.json());
