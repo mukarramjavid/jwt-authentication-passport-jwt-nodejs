@@ -12,7 +12,12 @@ router.post("/login", (req, res) => {
     }
 
     if (email != undefined && password != undefined) {
-        let DBUser = { id: "1a-2b-3c-4d-5e-6f", email: "mukarram@gmail.com", password: "123456789", role: "admin" };
+        let DBUser = [
+            { id: "1a-2b-3c-4d-5e-6f", email: "mukarram@gmail.com", password: "123456789", role: "admin" },
+            { id: "1aa-2bb-3cc-4dd-5ee-6ff", email: "mukarram1@gmail.com", password: "123456789", role: "admin" },
+            { id: "1aaa-2bbb-3ccc-4ddd-5eee-6fff", email: "mukarram2@gmail.com", password: "123456789", role: "admin" },
+        ];
+        DBUser = DBUser.find(u => u.email === email)
         if (email === DBUser.email && password === DBUser.password) {
             responseObj.statusCode = 200
             responseObj.errorMsg = ""
@@ -44,8 +49,8 @@ function generateJWTToken(user) {
         email: user.email,
         iat: parseInt(today.getTime() / 1000, 10),
         exp: parseInt(expirationDate.getTime() / 1000, 10),
-        type: config.tokenType,
-
+        sub: user.email,
+        iss: 'admin@gmail.com'
     }
 
 
